@@ -14,7 +14,7 @@ const logger = createLogger({
   level: 'info', // 출력할 최소 레벨
   format: format.combine(
     format.timestamp(), // 로그에 타임스탬프 추가
-    format.json(), // 로그를 json 형태로 출력
+    format.json() // 로그를 json 형태로 출력
   ),
   // 출력 형식
   transports: [
@@ -42,11 +42,11 @@ if (NODE_ENV === 'development') {
           ({ timestamp, level, message }) =>
             `${timestamp} [${level}] ${
               message instanceof Object ? JSON.stringify(message) : message
-            }`,
-        ),
+            }`
+        )
       ),
       level: 'silly',
-    }),
+    })
   );
 }
 

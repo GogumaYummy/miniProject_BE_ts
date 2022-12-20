@@ -15,9 +15,7 @@ exports.loginRequestPattern = joi.object().keys({
   password: joi.string().required().min(8).max(20),
 });
 //토큰 유효성 검사
-exports.loginResponsePattern = joi
-  .string()
-  .regex(/^[\w\d-_]+\.[\w\d-_]+\.[\w\d-_]+$/);
+exports.loginResponsePattern = joi.string().regex(/^[\w\d-_]+\.[\w\d-_]+\.[\w\d-_]+$/);
 //이메일 유효성 검사
 exports.emailPattern = joi.string().email().required();
 //닉네임 유효성 검사

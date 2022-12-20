@@ -6,11 +6,7 @@ const compression = require('compression');
 
 const router = require('./routes');
 const logger = require('./config/logger');
-const {
-  errorLogger,
-  errorConverter,
-  errorHandler,
-} = require('./middlewares/error');
+const { errorLogger, errorConverter, errorHandler } = require('./middlewares/error');
 const { NODE_ENV } = process.env;
 
 const app = express();
@@ -20,7 +16,7 @@ app.use(
   morgan(NODE_ENV === 'production' ? 'combined' : 'dev', {
     //
     stream: logger.stream, // morgan을 winston으로 로깅하기 위한 옵션
-  }),
+  })
 );
 app.use(express.json()); // 바디를 파싱해주는 미들웨어
 app.use(express.urlencoded({ extended: true })); // urlencoded 형식의 바디를 파싱하는 미들웨어, 안의 extended: true가 qs 모듈을 사용하도록 설정

@@ -8,10 +8,9 @@ class PostsController {
 
   createPost = async (req, res, next) => {
     try {
-      const { postInput } =
-        await postsValidation.createPost.input.validateAsync({
-          postInput: req.body,
-        });
+      const { postInput } = await postsValidation.createPost.input.validateAsync({
+        postInput: req.body,
+      });
       const imageKey = req.file.key;
       const { userId } = res.locals;
 
@@ -26,11 +25,10 @@ class PostsController {
 
   getPosts = async (req, res, next) => {
     try {
-      const { categoryId, page } =
-        await postsValidation.getPosts.input.validateAsync({
-          categoryId: req.query.categoryId,
-          page: req.query.page,
-        });
+      const { categoryId, page } = await postsValidation.getPosts.input.validateAsync({
+        categoryId: req.query.categoryId,
+        page: req.query.page,
+      });
       const { userId } = res.locals;
 
       const result = await this.postsService.getPosts(categoryId, page, userId);
@@ -62,11 +60,10 @@ class PostsController {
 
   updatePost = async (req, res, next) => {
     try {
-      const { postId, postInput } =
-        await postsValidation.updatePost.input.validateAsync({
-          postId: req.params.postId,
-          postInput: req.body,
-        });
+      const { postId, postInput } = await postsValidation.updatePost.input.validateAsync({
+        postId: req.params.postId,
+        postInput: req.body,
+      });
       const { userId } = res.locals;
 
       await this.postsService.updatePost(postId, postInput, userId);

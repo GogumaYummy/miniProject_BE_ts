@@ -9,6 +9,6 @@ router
   .get('/posts/:postId/comments', authMiddleware.passLogin, commentsController.getComments)
   .post('/posts/:postId/comments', authMiddleware.loggedInYet, commentsController.postComment)
   .patch('/comments/:commentId', authMiddleware.loggedInYet, commentsController.updateComment)
-  .delete('/comments/:commentId', authMiddleware.loggedInYet, commentsController.deleteComment)
+  .delete('/comments/:commentId', authMiddleware.loggedInYet, commentsController.deleteComment);
 
 module.exports = router;

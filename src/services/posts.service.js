@@ -17,11 +17,7 @@ class PostsService {
 
     if (page > pagesNum) throw new ApiError('존재하지 않는 페이지', 400);
 
-    const posts = await this.postsMySQLRepository.getPosts(
-      categoryId,
-      page,
-      userId,
-    );
+    const posts = await this.postsMySQLRepository.getPosts(categoryId, page, userId);
 
     return { pagesNum, posts };
   };

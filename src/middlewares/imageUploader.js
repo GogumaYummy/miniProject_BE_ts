@@ -9,10 +9,7 @@ module.exports = multer({
     s3,
     bucket: process.env.AWS_S3_BUCKET_NAME,
     key(req, file, callback) {
-      callback(
-        null,
-        `mini-project/${Date.now().toString()}_${file.originalname}`,
-      );
+      callback(null, `mini-project/${Date.now().toString()}_${file.originalname}`);
     },
     acl: 'public-read',
   }),

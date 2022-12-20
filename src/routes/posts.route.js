@@ -1,10 +1,7 @@
 const { Router } = require('express');
 const PostsController = require('../controllers/posts.controller');
 const imageUploader = require('../middlewares/imageUploader');
-const {
-  loggedInYet: isLoggedIn,
-  passLogin: getUserId,
-} = require('../middlewares/auth.mddleware');
+const { loggedInYet: isLoggedIn, passLogin: getUserId } = require('../middlewares/auth.mddleware');
 
 const router = Router();
 const postsController = new PostsController();

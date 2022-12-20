@@ -10,7 +10,8 @@ class LikeService {
   changeLike = async (postId, userId) => {
     await checkIdPattern.validateAsync(postId);
 
-    if (!(await this.likeRepository.existPost(postId))) throw new ApiError('존재하지 않는 게시글', 400);
+    if (!(await this.likeRepository.existPost(postId)))
+      throw new ApiError('존재하지 않는 게시글', 400);
 
     return await this.likeRepository.changeLike(postId, userId);
   };

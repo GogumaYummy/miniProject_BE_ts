@@ -25,7 +25,7 @@ exports.getPosts = {
         isLiked: Joi.number().required(),
         userNickname: Joi.string().required(),
         userId: Joi.number().required(),
-      }),
+      })
     ),
   }),
 };

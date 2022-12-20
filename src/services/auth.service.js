@@ -17,8 +17,7 @@ class AuthService {
 
   //회원가입
   register = async (userInfo) => {
-    const { email, nickname, password } =
-      await registerRequestPattern.validateAsync(userInfo);
+    const { email, nickname, password } = await registerRequestPattern.validateAsync(userInfo);
     const isExistUser = await this.authRepository.getUserByEmailOrNickname({
       email,
       nickname,
@@ -30,24 +29,14 @@ class AuthService {
 
   //로그인
   userLogin = async (loginInfo) => {
-    const { email, password } = await loginRequestPattern.validateAsync(
-      loginInfo,
-    );
+    const { email, password } = await loginRequestPattern.validateAsync(loginInfo);
     const [isExistUser] = await this.authRepository.getUserByEmail({ email });
     if (!isExistUser) throw new ApiError('이메일 또는 비밀번호 불일치', 401);
-    const decipheredPassword = await bcrypt.compare(
-      password,
-      isExistUser.password,
-    );
-    if (decipheredPassword !== true)
-      throw new ApiError('이메일 또는 비밀번호 불일치', 401);
-    const token = await jwt.sign(
-      { userId: isExistUser.userId },
-      JWT_SECRET_KEY,
-      {
-        expiresIn: '1h',
-      },
-    );
+    const decipheredPassword = await bcrypt.compare(password, isExistUser.password);
+    if (decipheredPassword !== true) throw new ApiError('이메일 또는 비밀번호 불일치', 401);
+    const token = await jwt.sign({ userId: isExistUser.userId }, JWT_SECRET_KEY, {
+      expiresIn: '1h',
+    });
 
     await loginResponsePattern.validateAsync(token);
     return { token, nickname: isExistUser.nickname };
